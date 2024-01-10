@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login and Signup Page</title>
+</head>
+<body>
+<div class="container">
+    <h2>Login</h2>
+    <form id="loginForm" onsubmit="return validateLoginForm()">
+        <div class="form-group">
+            <label for="loginUsername">Username</label>
+            <input type="text" id="loginUsername" name="loginUsername" required>
+            <span class="error-message" id="loginUsernameError"></span>
+        </div>
+        <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <input type="password" id="loginPassword" name="loginPassword" required>
+            <span class="error-message" id="loginPasswordError"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit">Login</button>
+        </div>
+    </form>
+    <hr>
+    <h2>Signup</h2>
+    <form id="signupForm" onsubmit="return validateSignupForm()">
+        <div class="form-group">
+            <label for="signupUsername">Username</label>
+            <input type="text" id="signupUsername" name="signupUsername" required>
+            <span class="error-message" id="signupUsernameError"></span>
+        </div>
+        <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <input type="password" id="signupPassword" name="signupPassword" required>
+            <span class="error-message" id="signupPasswordError"></span>
+        </div>
+        <div class="form-group">
+            <button type="submit">Signup</button>
+        </div>
+    </form>
+</div>
+<script>
+    let signupDetails = {};
+
+    function validateLoginForm() {
+        const username = document.getElementById('loginUsername').value;
+        const password = document.getElementById('loginPassword').value;
+        if (username === '') {
+            document.getElementById('loginUsernameError').innerText = 'Username is required';
+            return false;
+        }
+        if (password === '') {
+            document.getElementById('loginPasswordError').innerText = 'Password is required';
+            return false;
+        }
+        if (signupDetails[username] !== password) {
+            document.getElementById('loginUsernameError').innerText = 'Invalid details';
+            return false;
+        }
+        return true;
+    }
+
+    function validateSignupForm() {
+        const username = document.getElementById('signupUsername').value;
+        const password = document.getElementById('signupPassword').value;
+        if (username === '') {
+            document.getElementById('signupUsernameError').innerText = 'Username is required';
+            return false;
+        }
+        if (password === '') {
+            document.getElementById('signupPasswordError').innerText = 'Password is required';
+            return false;
+        }
+        signupDetails[username] = password;
+        alert('Signup successful!');
+        return true;
+    }
+</script>
+</body>
+</html>
